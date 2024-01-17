@@ -1,17 +1,18 @@
-function isPalindrome(str: string): boolean {
-    const cleanedStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-    const reversedStr = cleanedStr.split('').reverse().join('');
-    return cleanedStr === reversedStr;
+function isPalindrome(input: string): boolean {
+  const length = input.length;
+  const middle = Math.floor(length / 2);
+
+  for (let i = 0; i < middle; i++) {
+    if (input[i] !== input[length - 1 - i]) {
+      return false;
+    }
   }
-  
-  function checkPalindromes(words: string[]): void {
-    words.forEach((word, index) => {
-      const isPalindromic = isPalindrome(word);
-      console.log(`kata ${index + 1}: "${word}" ${isPalindromic ? '' : ' bukan'} palindrome.`);
-    });
-  }
-  
-  const inputWords: string[] = ['level', 'kanan', 'sugus', 'kodok', 'lampu', 'aba'];
-  
-  checkPalindromes(inputWords);
-  
+
+  return true;
+}
+
+const testString1 = "sugus";
+const testString2 = "kanan";
+
+console.log(`${testString1} is palindrome: ${isPalindrome(testString1)}`);
+console.log(`${testString2} is palindrome: ${isPalindrome(testString2)}`);
