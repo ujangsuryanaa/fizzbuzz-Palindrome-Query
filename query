@@ -1,0 +1,15 @@
+SELECT
+    O.customerNumber,
+    COUNT(DISTINCT OD.productCode) AS totalProductLines
+FROM
+    orders O
+JOIN
+    orderdetails OD ON O.orderNumber = OD.orderNumber
+JOIN
+    products P ON OD.productCode = P.productCode
+WHERE
+    P.productLine = 'Classic Cars'
+GROUP BY
+    O.customerNumber
+HAVING
+    totalProductLines > 23;
